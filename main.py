@@ -17,17 +17,11 @@ class MainWindow(QMainWindow):
         self.setWindowTitle("Music Player")
 
         main_layout = QHBoxLayout()  # main layout will be two horizontal panes
-        left_pane = QStackedLayout()
-        right_pane = QVBoxLayout()
+        left_pane = LeftPane()
+        right_pane = NowPlaying()
 
-        main_layout.addLayout(left_pane)
-        main_layout.addLayout(right_pane)
-
-        library = Library()
-        now_playing = NowPlaying()
-
-        left_pane.addWidget(library)
-        right_pane.addWidget(now_playing)
+        main_layout.addWidget(left_pane)
+        main_layout.addWidget(right_pane)
 
         widget = QWidget()
         widget.setLayout(main_layout)
@@ -39,11 +33,11 @@ class LeftPane(QMainWindow):
         super().__init__()
         layout = QVBoxLayout()
 
-        tab_bar = QTabWidget()
-        tab_bar.addTab("Library")
-        tab_bar.addTab("Now Playing")
+        self.tab_bar = QTabWidget()
+        self.tab_bar.addTab(Library(), "Library")
+        self.tab_bar.addTab(NowPlaying(), "Now Playing")
 
-        layout.addWidget(tab_bar)
+        layout.addWidget(self.tab_bar)
 
         widget = QWidget()
         widget.setLayout(layout)
