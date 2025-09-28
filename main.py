@@ -49,6 +49,7 @@ class Library(QMainWindow):
         super().__init__()
 
 
+
 class NowPlaying(QMainWindow):
     def __init__(self):
         super().__init__()
