@@ -5,9 +5,16 @@ from PySide6.QtWidgets import (
     QWidget,
     QHBoxLayout,
     QVBoxLayout,
-    QStackedLayout,
     QTabWidget,
+    QLabel,
 )
+
+from mutagen import (
+    flac,
+    mp3,
+)
+
+import os
 
 
 class MainWindow(QMainWindow):
@@ -15,7 +22,7 @@ class MainWindow(QMainWindow):
         super().__init__()
 
         self.setWindowTitle("Music Player")
-
+        self.setMinimumSize(800, 600)
         main_layout = QHBoxLayout()  # main layout will be two horizontal panes
         left_pane = LeftPane()
         right_pane = NowPlaying()
@@ -35,7 +42,8 @@ class LeftPane(QMainWindow):
 
         self.tab_bar = QTabWidget()
         self.tab_bar.addTab(Library(), "Library")
-        self.tab_bar.addTab(NowPlaying(), "Now Playing")
+        self.tab_bar.addTab(Lyrics(), "Lyrics")
+        self.tab_bar.addTab(Credits(), "Credits")
 
         layout.addWidget(self.tab_bar)
 
@@ -47,7 +55,21 @@ class LeftPane(QMainWindow):
 class Library(QMainWindow):
     def __init__(self):
         super().__init__()
+        layout = QVBoxLayout()
 
+        widget = QWidget()
+        widget.setLayout(layout)
+        self.setCentralWidget(widget)
+
+
+class Lyrics(QMainWindow):
+    def __init__(self):
+        super().__init__()
+
+
+class Credits(QMainWindow):
+    def __init__(self):
+        super().__init__()
 
 
 class NowPlaying(QMainWindow):
