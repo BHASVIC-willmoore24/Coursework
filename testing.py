@@ -1,7 +1,14 @@
-from mutagen import flac
+from mutagen import (
+    flac,
+    MutagenError,
+)
+
 import os
 
-dir_list = os.listdir("Either_Or")
+directory = "Either_Or"
 
-for i in dir_list:
-    print(i)
+dir_list = os.listdir(directory)
+
+test = flac.FLAC(f"{directory}/{dir_list[0]}")
+
+test.pprint()
