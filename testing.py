@@ -5,10 +5,23 @@ from mutagen import (
 
 import os
 
-directory = "Either_Or"
+directory = "/home/will/Music/"
 
-dir_list = os.listdir(directory)
+song_paths = []
 
-test = flac.FLAC(f"{directory}/{dir_list[0]}")
+def scan_dir(path):
+    dir = os.scandir(path)
+    for i in dir:
+        if i.is_dir():
+            scan_dir(i.path)
+        else:
+            song_paths.append(f"{i.path}")
+        
 
-test.pprint()
+scan_dir(directory)
+
+print(song_paths)
+
+test = flac.FLAC(song_paths[0])
+print(test["ARTIST"])
+
