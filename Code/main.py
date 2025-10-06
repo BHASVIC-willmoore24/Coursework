@@ -25,7 +25,7 @@ class MainWindow(QMainWindow):
         self.setMinimumSize(800, 600)
         main_layout = QHBoxLayout()  # main layout will be two horizontal panes
         left_pane = LeftPane()
-        right_pane = NowPlaying()
+        right_pane = RightPane()
 
         main_layout.addWidget(left_pane)
         main_layout.addWidget(right_pane)
@@ -72,7 +72,7 @@ class Credits(QMainWindow):
         super().__init__()
 
 
-class NowPlaying(QMainWindow):
+class RightPane(QMainWindow):
     def __init__(self):
         super().__init__()
         layout = QVBoxLayout()
