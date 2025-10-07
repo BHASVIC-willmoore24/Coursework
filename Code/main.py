@@ -7,6 +7,8 @@ from PySide6.QtWidgets import (
     QVBoxLayout,
     QTabWidget,
     QLabel,
+    QFileDialog,
+    QLineEdit,
 )
 
 from mutagen import (
@@ -15,7 +17,7 @@ from mutagen import (
 )
 
 import os
-
+from pathlib import Path
 
 class MainWindow(QMainWindow):
     def __init__(self):
@@ -57,9 +59,22 @@ class Library(QMainWindow):
         super().__init__()
         layout = QVBoxLayout()
 
+        choose_dir = QPushButton("Select Music Folder")
+        choose_dir.clicked.connect(self.file_dialog)
+        self.dir_name = QLineEdit()
+        
+        layout.addWidget(self.dir_name)
+        layout.addWidget(choose_dir)
+
         widget = QWidget()
         widget.setLayout(layout)
         self.setCentralWidget(widget)
+
+    def file_dialog(self):
+        directory = QFileDialog.getExistingDirectory(self, "Choose directory")
+        if directory:
+            path = Path(directory)
+            self.dir_name.setText(f"{directory}")
 
 
 class Lyrics(QMainWindow):
@@ -94,9 +109,10 @@ class RightPane(QMainWindow):
             self.play_button.setText("Paused")
 
 
-app = QApplication([])
+if __name__ == '__main__':
+    app = QApplication([])
 
-window = MainWindow()
-window.show()
+    window = MainWindow()
+    window.show()
 
-app.exec()
+    app.exec()
