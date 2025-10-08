@@ -11,14 +11,6 @@ from PySide6.QtWidgets import (
     QLineEdit,
 )
 
-from mutagen import (
-    flac,
-    mp3,
-)
-
-import os
-from pathlib import Path
-
 from left_pane import LeftPane
 from right_pane import RightPane
 
