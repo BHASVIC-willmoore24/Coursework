@@ -1,0 +1,8 @@
+from PySide6.QtWidgets import (
+    QMainWindow,
+)
+
+
+class Lyrics(QMainWindow):
+    def __init__(self):
+        super().__init__()

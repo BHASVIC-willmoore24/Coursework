@@ -19,6 +19,10 @@ from mutagen import (
 import os
 from pathlib import Path
 
+from left_pane import LeftPane
+from right_pane import RightPane
+
+
 class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
@@ -35,78 +39,6 @@ class MainWindow(QMainWindow):
         widget = QWidget()
         widget.setLayout(main_layout)
         self.setCentralWidget(widget)
-
-
-class LeftPane(QMainWindow):
-    def __init__(self):
-        super().__init__()
-        layout = QVBoxLayout()
-
-        self.tab_bar = QTabWidget()
-        self.tab_bar.addTab(Library(), "Library")
-        self.tab_bar.addTab(Lyrics(), "Lyrics")
-        self.tab_bar.addTab(Credits(), "Credits")
-
-        layout.addWidget(self.tab_bar)
-
-        widget = QWidget()
-        widget.setLayout(layout)
-        self.setCentralWidget(widget)
-
-
-class Library(QMainWindow):
-    def __init__(self):
-        super().__init__()
-        layout = QVBoxLayout()
-
-        choose_dir = QPushButton("Select Music Folder")
-        choose_dir.clicked.connect(self.file_dialog)
-        self.dir_name = QLineEdit()
-        
-        layout.addWidget(self.dir_name)
-        layout.addWidget(choose_dir)
-
-        widget = QWidget()
-        widget.setLayout(layout)
-        self.setCentralWidget(widget)
-
-    def file_dialog(self):
-        directory = QFileDialog.getExistingDirectory(self, "Choose directory")
-        if directory:
-            path = Path(directory)
-            self.dir_name.setText(f"{directory}")
-
-
-class Lyrics(QMainWindow):
-    def __init__(self):
-        super().__init__()
-
-
-class Credits(QMainWindow):
-    def __init__(self):
-        super().__init__()
-
-
-class RightPane(QMainWindow):
-    def __init__(self):
-        super().__init__()
-        layout = QVBoxLayout()
-
-        self.play_button = QPushButton("Paused")
-        self.play_button.setCheckable(True)  # button can be toggled
-        self.play_button.clicked.connect(self.play_pause)
-
-        layout.addWidget(self.play_button)
-
-        widget = QWidget()
-        widget.setLayout(layout)
-        self.setCentralWidget(widget)
-
-    def play_pause(self, checked):
-        if checked:
-            self.play_button.setText("Playing")
-        else:
-            self.play_button.setText("Paused")
 
 
 if __name__ == '__main__':
