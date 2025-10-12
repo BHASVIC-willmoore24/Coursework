@@ -1,26 +1,12 @@
-from mutagen import (
-    flac,
-)
+from settings import Settings
 
-import os
+test = Settings()
 
+test.add("Directory", "TTTTT", "JJJJJJJ")
+print(test.get("Directory", "TTTTT"))
 
-def scandir(path):
-    current_dir = os.scandir(path)
-    for i in current_dir:
-        if i.is_dir():
-            scandir(i.path)
-        else:
-            song_paths.append(f"{i.path}")
+test.set("Directory", "TTTTT", "kkkkkkk")
+print(test.get("Directory", "TTTTT"))
 
+test.add("test33", "test", "test9999")
 
-directory = "../Music/"
-
-song_paths = []
-
-scandir(directory)
-
-print(song_paths[0])
-
-test = flac.FLAC(song_paths[0])
-print(test["ARTIST"])
