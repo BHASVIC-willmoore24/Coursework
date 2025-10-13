@@ -1,14 +1,8 @@
 from PySide6.QtWidgets import (
     QApplication,
-    QPushButton,
     QMainWindow,
     QWidget,
     QHBoxLayout,
-    QVBoxLayout,
-    QTabWidget,
-    QLabel,
-    QFileDialog,
-    QLineEdit,
 )
 
 from left_pane import LeftPane

@@ -13,20 +13,28 @@ from mutagen import (
 )
 
 import os
-from pathlib import Path
+import pathlib
+
+from settings import Settings
 
 
 class Library(QMainWindow):
     def __init__(self):
         super().__init__()
         layout = QVBoxLayout()
+        self.settings = Settings()
 
-        self.dir = ""
         self.song_paths = []
+
+        self.dir = (self.settings.get("Directory", "folder"))
 
         choose_dir = QPushButton("Select Music Folder")
         choose_dir.clicked.connect(self.file_dialog)
         self.current_dir_text = QLineEdit()
+
+        if self.dir != "":
+            self.current_dir_text.setText(f"{self.dir}")
+            self.scandir(self.dir)
 
         layout.addWidget(self.current_dir_text)
         layout.addWidget(choose_dir)
@@ -39,6 +47,8 @@ class Library(QMainWindow):
         directory = QFileDialog.getExistingDirectory(self, "Choose directory")
         if directory:
             self.current_dir_text.setText(f"{directory}")
+            self.settings.set("Directory", "folder", directory)
+            self.song_paths = []
             self.scandir(directory)
             print(self.song_paths)
 
@@ -48,4 +58,6 @@ class Library(QMainWindow):
             if i.is_dir():
                 self.scandir(i.path)
             else:
-                self.song_paths.append(f"{i.path}")
+                filetype = pathlib.Path(i.path).suffix
+                if filetype == ".flac":
+                    self.song_paths.append(f"{i.path}")
