@@ -8,6 +8,7 @@ from PySide6.QtWidgets import (
 from library import Library
 from lyrics import Lyrics
 from credits import Credits
+from settings import Settings
 
 
 class LeftPane(QMainWindow):
@@ -19,6 +20,7 @@ class LeftPane(QMainWindow):
         self.tab_bar.addTab(Library(), "Library")
         self.tab_bar.addTab(Lyrics(), "Lyrics")
         self.tab_bar.addTab(Credits(), "Credits")
+        self.tab_bar.addTab(Settings(), "Settings")
 
         layout.addWidget(self.tab_bar)
 
