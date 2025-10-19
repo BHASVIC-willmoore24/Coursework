@@ -9,9 +9,6 @@ class StoredMusic:
         self.song_paths = []
         self.tracks_full = [[]]
 
-        for i in range(len(self.song_paths)):
-
-
     def append_song_paths(self, path):
         self.song_paths.append(path)
 
