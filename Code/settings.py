@@ -10,7 +10,6 @@ from PySide6.QtWidgets import (
 )
 
 import os
-import pathlib
 
 from stored_music import StoredMusic
 
@@ -55,9 +54,7 @@ class Settings(QMainWindow):
             if i.is_dir():
                 self.scandir(i.path)
             else:
-                filetype = pathlib.Path(i.path).suffix
-                if filetype == ".flac":
-                    self.stored_music.append_song_paths(f"{i.path}")
+                self.stored_music.append_song_paths(f"{i.path}")
 
     def get_conf(self, section, setting):
         self.config.read("config.ini")
