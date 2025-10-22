@@ -54,7 +54,7 @@ class Settings(QMainWindow):
             if i.is_dir():
                 self.scandir(i.path)
             else:
-                self.stored_music.append_song_paths(f"{i.path}")
+                self.stored_music.append_song_paths(i.path)
 
     def get_conf(self, section, setting):
         self.config.read("config.ini")
