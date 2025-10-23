@@ -29,3 +29,5 @@ class StoredMusic:
 
             self.tracks_full.append(temp_list)
 
+    def get_metadata(self, index, data):
+        return self.tracks_full[index][data]
