@@ -1,4 +1,5 @@
 import mutagen
+import os
 
 
 class StoredMusic:
@@ -17,7 +18,7 @@ class StoredMusic:
         data = mutagen.File(path)
 
         if data:
-            temp_list = [0] * 8
+            temp_list = [0] * 9
             temp_list[0] = path
             temp_list[1] = data["artist"]
             temp_list[2] = data["album"]
@@ -26,8 +27,20 @@ class StoredMusic:
             temp_list[5] = data["date"]
             temp_list[6] = data["genre"]
             temp_list[7] = data.info.length
+            temp_list[8] = self.album_cover(path)
 
             self.tracks_full.append(temp_list)
+
+    def album_cover(self, path):
+        dir_path = os.path.dirname(path)
+        dir_contents = os.scandir(dir_path)
+
+        for i in dir_contents:
+            file = os.path.splitext(i)
+            name = file[0]
+            ext = file[1]
+            if ext == ".png" or ext == ".jpg":
+                return name + ext
 
     def get_metadata(self, index, data):
         return self.tracks_full[index][data]
