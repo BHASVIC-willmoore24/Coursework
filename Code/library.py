@@ -14,6 +14,9 @@ class Library(QMainWindow):
     def __init__(self):
         super().__init__()
         layout = QVBoxLayout()
+        album = Album()
+
+        layout.addWidget(album)
 
         widget = QWidget()
         widget.setLayout(layout)
@@ -24,7 +27,6 @@ class Album(QWidget):
     def __init__(self):
         super().__init__()
         main_layout = QHBoxLayout()
-
 
         self.setLayout(main_layout)
         self.show()
