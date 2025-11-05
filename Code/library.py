@@ -13,20 +13,24 @@ from stored_music import StoredMusic
 class Library(QMainWindow):
     def __init__(self):
         super().__init__()
-        layout = QVBoxLayout()
-        album = Album()
+        self.stored_music = StoredMusic()
 
-        layout.addWidget(album)
+    def update_library(self):
+        main_layout = QVBoxLayout()
+        count = self.stored_music.num_tracks()
+
+        albums = []
+
+        for i in range(count):
+            album_layout = QHBoxLayout()
+
+            if self.stored_music.get_metadata(i, 2) in albums:
+
+
+            album = QWidget()
+            album.setLayout(album_layout)
+            main_layout.addWidget(album)
 
         widget = QWidget()
-        widget.setLayout(layout)
+        widget.setLayout(main_layout)
         self.setCentralWidget(widget)
-
-
-class Album(QWidget):
-    def __init__(self):
-        super().__init__()
-        main_layout = QHBoxLayout()
-
-        self.setLayout(main_layout)
-        self.show()

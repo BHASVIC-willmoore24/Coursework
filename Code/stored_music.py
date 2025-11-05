@@ -4,8 +4,8 @@ import os
 
 class StoredMusic:
     def __init__(self):
-        self.song_paths = []
-        self.tracks_full = []
+        self.song_paths = []  # list for song paths only
+        self.tracks_full = []  # 2D list, full metadata
 
     def append_song_paths(self, path):
         self.song_paths.append(f"{path}")
@@ -13,6 +13,7 @@ class StoredMusic:
 
     def clear_song_paths(self):
         self.song_paths = []
+        self.tracks_full = []
 
     def read_metadata(self, path):
         data = mutagen.File(path)
@@ -44,3 +45,6 @@ class StoredMusic:
 
     def get_metadata(self, index, data):
         return self.tracks_full[index][data]
+
+    def num_tracks(self):
+        return len(self.tracks_full)

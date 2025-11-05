@@ -47,7 +47,6 @@ class Settings(QMainWindow):
             self.set_conf("Directory", "folder", directory)
             self.stored_music.clear_song_paths()
             self.scandir(directory)
-            print(self.stored_music.get_metadata(0, 8))
 
     def scandir(self, path):
         current_dir = os.scandir(path)
