@@ -12,6 +12,7 @@ from PySide6.QtWidgets import (
 import os
 
 from stored_music import StoredMusic
+from library import Library
 
 
 class Settings(QMainWindow):
@@ -19,6 +20,7 @@ class Settings(QMainWindow):
         super().__init__()
         layout = QVBoxLayout()
         self.stored_music = StoredMusic()
+        self.library = Library()
 
         self.config = configparser.ConfigParser()
         self.config["Directory"] = {"Folder": ""}
@@ -47,6 +49,7 @@ class Settings(QMainWindow):
             self.set_conf("Directory", "folder", directory)
             self.stored_music.clear_song_paths()
             self.scandir(directory)
+            self.library.update_library()
 
     def scandir(self, path):
         current_dir = os.scandir(path)
