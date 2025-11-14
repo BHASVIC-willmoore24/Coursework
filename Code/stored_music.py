@@ -1,7 +1,6 @@
 import mutagen
 import os
 
-
 class StoredMusic:
     def __init__(self):
         self.song_paths = []  # list for song paths only
@@ -43,8 +42,8 @@ class StoredMusic:
             if ext == ".png" or ext == ".jpg":
                 return name + ext
 
-    def get_metadata(self, index, data):
-        return self.tracks_full[index][data]
+    def get_metadata(self):
+        return self.tracks_full
 
     def num_tracks(self):
         return len(self.tracks_full)

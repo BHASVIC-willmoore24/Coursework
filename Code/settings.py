@@ -34,6 +34,9 @@ class Settings(QMainWindow):
         if self.dir != "":
             self.current_dir_text.setText(f"{self.dir}")
             self.scandir(self.dir)
+            tracks_full = self.stored_music.get_metadata()
+            self.library.update_library(tracks_full)
+
 
         layout.addWidget(self.current_dir_text)
         layout.addWidget(choose_dir)
@@ -49,7 +52,8 @@ class Settings(QMainWindow):
             self.set_conf("Directory", "folder", directory)
             self.stored_music.clear_song_paths()
             self.scandir(directory)
-            self.library.update_library()
+            tracks_full = self.stored_music.get_metadata()
+            self.library.update_library(tracks_full)
 
     def scandir(self, path):
         current_dir = os.scandir(path)

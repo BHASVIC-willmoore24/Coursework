@@ -14,29 +14,34 @@ from PySide6.QtWidgets import (
     QWidget,
     QHBoxLayout,
     QLabel,
+    QPushButton,
 )
 
 from PySide6.QtGui import QPixmap
 
+from stored_music import StoredMusic
+
+from settings import Settings
 
 class MainWindow(QMainWindow):
     def __init__(self):
         super().__init__()
 
-        self.setWindowTitle("Music Player")
-        self.setMinimumSize(100, 100)
-        main_layout = QHBoxLayout()  # main layout will be two horizontal panes
-
-        label = QLabel(self)
-        pixmap = QPixmap("C:/Users/will.moore24/Downloads/Coursework/Coursework/Music/Elliott Smith/Either_Or/cover.png")
-        label.setPixmap(pixmap)
-        label.setScaledContents(True)
-
-        main_layout.addWidget(label)
+    def addwidge(self):
+        layout = QHBoxLayout()
+        play_button = QPushButton("Paused")
+        layout.addWidget(play_button)
 
         widget = QWidget()
-        widget.setLayout(main_layout)
+        widget.setLayout(layout)
         self.setCentralWidget(widget)
+       
+
+class tester():
+    def __init__(self):
+        super().__init__()
+        testimp = MainWindow()
+        testimp.addwidge()
 
 
 if __name__ == '__main__':
