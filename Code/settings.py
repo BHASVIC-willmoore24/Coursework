@@ -37,7 +37,6 @@ class Settings(QMainWindow):
             tracks_full = self.stored_music.get_metadata()
             self.library.update_library(tracks_full)
 
-
         layout.addWidget(self.current_dir_text)
         layout.addWidget(choose_dir)
 
