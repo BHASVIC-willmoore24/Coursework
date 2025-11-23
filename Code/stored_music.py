@@ -1,8 +1,6 @@
 import mutagen
 import os
 
-from library import Library
-
 
 class StoredMusic:
     def __init__(self):

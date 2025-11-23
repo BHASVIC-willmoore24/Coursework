@@ -7,44 +7,56 @@ from PySide6.QtWidgets import (
     QLabel,
 )
 
+from PySide6.QtCore import QTimer
+
 from PySide6.QtGui import (
     QPixmap,
 )
+
+from stored_music import StoredMusic
 
 
 class Library(QMainWindow):
     def __init__(self):
         super().__init__()
+        self.layout = QVBoxLayout()
+        self.path = "/home/will/Music/Either_Or/cover.png"
 
         self.tracks = []
 
-    def update_library(self, track_list):
-        self.tracks = track_list
+        reload_button = QPushButton("Reload Library")
+        reload_button.setCheckable(True)
+        reload_button.clicked.connect(self.clicked_button)
 
-    def update_library(self, tracks):
-
-        layout = QVBoxLayout()
-        album_layout = QHBoxLayout()
-        play_button = QPushButton("test widget")
-        album_layout.addWidget(play_button)
-
-        cover = QLabel(self)
-        cover_path = "C:/Users/will.moore24/Music/Either_Or/cover.png"
-        pixmap = QPixmap(cover_path)
-        cover.setPixmap(pixmap)
-        album_layout.addWidget(cover)
-
-        layout.addLayout(album_layout)
+        self.layout.addWidget(reload_button)
         widget = QWidget()
-        widget.setLayout(layout)
+        widget.setLayout(self.layout)
         self.setCentralWidget(widget)
 
+    def clicked_button(self):
+        print(self.tracks)
+        self.update_library(self.tracks)
 
-""" 
-        for i in range(len(tracks)):
+    def set_tracks(self, pTrack):
+        self.tracks = pTrack
+        print(self.tracks)
+        self.update_library(pTrack)
+
+    def update_library(self, pTrack):
+        print(pTrack)
+        albums_layout = QHBoxLayout()
+
+        if len(pTrack) > 0:
+            print(pTrack[0][8])
             cover = QLabel(self)
-            cover_path = tracks[i][8]
-            pixmap = QPixmap(cover_path)
+            path = pTrack[0][8]
+            pixmap = QPixmap(path)
             cover.setPixmap(pixmap)
-            album_layout.addWidget(cover)
-"""
+            cover.resize(100, 100)
+            albums_layout.addWidget(cover)
+
+        self.layout.addLayout(albums_layout)
+        widget = QWidget()
+        widget.setLayout(self.layout)
+        self.setCentralWidget(widget)
+
