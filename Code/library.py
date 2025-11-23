@@ -40,14 +40,11 @@ class Library(QMainWindow):
     def set_tracks(self, pTrack):
         self.tracks = pTrack
         print(self.tracks)
-        self.update_library(pTrack)
 
     def update_library(self, pTrack):
-        print(pTrack)
         albums_layout = QHBoxLayout()
 
         if len(pTrack) > 0:
-            print(pTrack[0][8])
             cover = QLabel(self)
             path = pTrack[0][8]
             pixmap = QPixmap(path)
