@@ -7,6 +7,11 @@ from PySide6.QtWidgets import (
 
 from left_pane import LeftPane
 from right_pane import RightPane
+from library import Library
+from lyrics import Lyrics
+from credits import Credits
+from settings import Settings
+from stored_music import StoredMusic
 
 
 class MainWindow(QMainWindow):
@@ -16,7 +21,13 @@ class MainWindow(QMainWindow):
         self.setWindowTitle("Music Player")
         self.setMinimumSize(800, 600)
         main_layout = QHBoxLayout()  # main layout will be two horizontal panes
-        left_pane = LeftPane()
+        library = Library()
+        lyrics = Lyrics()
+        credit = Credits()
+        stored_music = StoredMusic()
+        settings = Settings(library, stored_music)
+
+        left_pane = LeftPane(library, lyrics, credit, settings)
         right_pane = RightPane()
 
         main_layout.addWidget(left_pane)
