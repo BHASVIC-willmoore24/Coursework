@@ -20,20 +20,23 @@ class Library(QMainWindow):
         self.path = "/home/will/Music/Either_Or/cover.png"
 
     def update_library(self, track):
-        albums_layout = QHBoxLayout()
+        main_layout = QVBoxLayout()
 
         if len(track) > 0:
-            cover = QLabel(self)
-            path = track[0][8]
-            pixmap = QPixmap(path)
-            pixmap = pixmap.scaled(50, 50, PySide6.QtCore.Qt.AspectRatioMode.KeepAspectRatio,
-                                   PySide6.QtCore.Qt.TransformationMode.SmoothTransformation)
-            cover.setPixmap(pixmap)
-            cover.setScaledContents(True)
-            albums_layout.addWidget(cover)
+            for i in range(len(track)):
+                album_layout = QHBoxLayout()
+                cover = QLabel(self)
+                path = track[i][8]
+                pixmap = QPixmap(path)
+                pixmap = pixmap.scaled(50, 50, PySide6.QtCore.Qt.AspectRatioMode.KeepAspectRatio,
+                                       PySide6.QtCore.Qt.TransformationMode.SmoothTransformation)
+                cover.setPixmap(pixmap)
+                cover.setGeometry(100, 100, 0, 0)
+                album_layout.addWidget(cover)
+                main_layout.addLayout(album_layout)
 
-        albums_layout.
-        self.layout.addLayout(albums_layout)
+        self.layout.addLayout(main_layout)
+
         widget = QWidget()
         widget.setLayout(self.layout)
         self.setCentralWidget(widget)
