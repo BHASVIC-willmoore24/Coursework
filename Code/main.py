@@ -21,12 +21,13 @@ class MainWindow(QMainWindow):
         self.setWindowTitle("Music Player")
         self.setMinimumSize(800, 600)
         main_layout = QHBoxLayout()  # main layout will be two horizontal panes
+
+        # instantiating objects
         library = Library()
         lyrics = Lyrics()
         credit = Credits()
         stored_music = StoredMusic()
         settings = Settings(library, stored_music)
-
         left_pane = LeftPane(library, lyrics, credit, settings)
         right_pane = RightPane()
 

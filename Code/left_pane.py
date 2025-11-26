@@ -11,6 +11,7 @@ class LeftPane(QMainWindow):
         super().__init__()
         layout = QVBoxLayout()
 
+        # tab widget will make the left pane show a single widget that can be swapped using a tab bar
         self.tab_bar = QTabWidget()
         self.tab_bar.addTab(library, "Library")
         self.tab_bar.addTab(lyrics, "Lyrics")
