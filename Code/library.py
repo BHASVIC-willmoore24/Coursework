@@ -4,6 +4,7 @@ from PySide6.QtWidgets import (
     QHBoxLayout,
     QVBoxLayout,
     QLabel,
+    QSizePolicy,
 )
 
 from PySide6.QtGui import (
@@ -21,8 +22,12 @@ class Library(QMainWindow):
     # using a method to update library display so this can be called in other classes
     def update_library(self, track):
         main_layout = QVBoxLayout()
+        size_policy = main_layout.sizePolicy()
 
+        # if statement ensures only working on a list - so there is no error during loop
         if len(track) > 0:
+
+            # loop through each track - each sub list
             for i in range(len(track)):
                 album_layout = QHBoxLayout()
                 info_layout = QVBoxLayout()
