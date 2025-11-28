@@ -26,3 +26,6 @@ class RightPane(QMainWindow):
             self.play_button.setText("Playing")
         else:
             self.play_button.setText("Paused")
+
+    def current_track(self, track):
+        print(track)

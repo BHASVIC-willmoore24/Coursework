@@ -23,13 +23,13 @@ class MainWindow(QMainWindow):
         main_layout = QHBoxLayout()  # main layout will be two horizontal panes
 
         # instantiating objects
-        library = Library()
+        right_pane = RightPane()
+        library = Library(right_pane)
         lyrics = Lyrics()
         credit = Credits()
         stored_music = StoredMusic()
         settings = Settings(library, stored_music)
         left_pane = LeftPane(library, lyrics, credit, settings)
-        right_pane = RightPane()
 
         main_layout.addWidget(left_pane)
         main_layout.addWidget(right_pane)
