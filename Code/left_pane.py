@@ -7,7 +7,7 @@ from PySide6.QtWidgets import (
 
 
 class LeftPane(QMainWindow):
-    def __init__(self, library, lyrics, credit, settings):
+    def __init__(self, library, lyrics, credit, settings, recommendations):
         super().__init__()
         layout = QVBoxLayout()
 
@@ -16,6 +16,7 @@ class LeftPane(QMainWindow):
         self.tab_bar.addTab(library, "Library")
         self.tab_bar.addTab(lyrics, "Lyrics")
         self.tab_bar.addTab(credit, "Credits")
+        self.tab_bar.addTab(recommendations, "Recommendations")
         self.tab_bar.addTab(settings, "Settings")
 
         layout.addWidget(self.tab_bar)

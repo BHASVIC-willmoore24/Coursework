@@ -12,6 +12,7 @@ from lyrics import Lyrics
 from credits import Credits
 from settings import Settings
 from stored_music import StoredMusic
+from recommendations import Recommendations
 
 
 class MainWindow(QMainWindow):
@@ -23,13 +24,14 @@ class MainWindow(QMainWindow):
         main_layout = QHBoxLayout()  # main layout will be two horizontal panes
 
         # instantiating objects
-        right_pane = RightPane()
-        library = Library(right_pane)
         lyrics = Lyrics()
         credit = Credits()
         stored_music = StoredMusic()
+        recommendations = Recommendations(stored_music)
+        right_pane = RightPane(lyrics, credit, recommendations)
+        library = Library(right_pane)
         settings = Settings(library, stored_music)
-        left_pane = LeftPane(library, lyrics, credit, settings)
+        left_pane = LeftPane(library, lyrics, credit, settings, recommendations)
 
         main_layout.addWidget(left_pane)
         main_layout.addWidget(right_pane)

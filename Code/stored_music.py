@@ -19,7 +19,7 @@ class StoredMusic:
         data = mutagen.File(path)
 
         if data:
-            temp_list = [0] * 9
+            temp_list = [0] * 10
             temp_list[0] = path
             temp_list[1] = data["artist"]
             temp_list[2] = data["album"]
@@ -29,6 +29,7 @@ class StoredMusic:
             temp_list[6] = data["genre"]
             temp_list[7] = data.info.length
             temp_list[8] = self.album_cover(path)
+            temp_list[9] = data["MUSICBRAINZ_TRACKID"]
 
             self.tracks_full.append(temp_list)
 
