@@ -43,12 +43,14 @@ class Credits(QMainWindow):
 
         for artist in data["artist-list"]:
 
-            for link in artist.get("artist-relation-list", []):
-                artist_info = link.get("artist", {})
-                attributes = link.get("attribute-list", [])
+            # getting every artist
+            for relation in artist.get("artist-relation-list", []):
+                artist_info = relation.get("artist", {})
+                attributes = relation.get("attribute-list", [])
 
                 if artist_info and attributes:
                     name = artist_info.get("name")
+                    # get correct instrument for person
                     instruments = [attribute for attribute in attributes]
 
                     if name and instruments:

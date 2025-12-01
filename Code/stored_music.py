@@ -18,6 +18,7 @@ class StoredMusic:
     def read_metadata(self, path):
         data = mutagen.File(path)
 
+        # using a temporary list for data, which is then appended after
         if data:
             temp_list = [0] * 10
             temp_list[0] = path
@@ -37,6 +38,7 @@ class StoredMusic:
         dir_path = os.path.dirname(path)
         dir_contents = os.scandir(dir_path)
 
+        # finds an image file thats .png or .jpg and records the path of this as the album cover
         for i in dir_contents:
             file = os.path.splitext(i)
             name = file[0]
